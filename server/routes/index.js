@@ -6,9 +6,10 @@ let bodyParser = require('body-parser');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
-/* GET home page. */
-router.get('/', (req, res, next) => {
-    res.render('index', { title: 'Express' });
+router.post('/register', (req, res) => {
+    res.send({
+        message: `Hello ${req.body.email}! Your user was registered! Have fun`
+    })
 });
 
 module.exports = router;
