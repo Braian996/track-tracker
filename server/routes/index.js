@@ -6,10 +6,12 @@ let bodyParser = require('body-parser');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
-router.post('/register', (req, res) => {
-    res.send({
-        message: `Hello ${req.body.email}! Your user was registered! Have fun`
-    })
-});
+// Controllers
+const AuthenticationController = require('../controllers/AuthenticationController');
+
+// Policies
+const AuthenticationControllerPolicy = require('../policies/AuthenticationControllerPolicy');
+
+router.post('/register', AuthenticationControllerPolicy.register ,AuthenticationController.register);
 
 module.exports = router;
